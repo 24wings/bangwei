@@ -1,0 +1,568 @@
+{%extends 'layout.html'%} {%block content%}
+
+<div data='null' id='user-data'></div>
+<div data='zh' id='locale-name-data' style='display: none'></div>
+<div data='https://www.pantrysbest.com' id='server-url-data' style='display: none'></div>
+<div data='' id='is-show-popcity-data' style='display: none'></div>
+
+
+
+<div class='hidden-xs navbar navbar-default navbar-fixed-top navbar-static-top' role='navigation'>
+    <div class='container' style='padding-right: 0px;padding-left: 0px;'>
+        <div class='navbar-header'>
+            <div class='navbar-brand'>
+                <a href='/'>
+                    <!-- <img alt="Pc%e7%ab%aflogo" src="/system/ad_images/pc_images/000/000/010/original/pc%E7%AB%AFlogo.png?1518602557" style="min-width: 205px;"
+                    /> -->
+                </a>
+                <!-- /%a{href: "/"}= image_tag('logo-normal.png', style: "min-width: 205px;") -->
+            </div>
+        </div>
+        <ul class='nav navbar-nav'>
+            <li class='v2_locale_icon'>
+                <a class='pc-locale-icon' href='/apis/set_current_locale?locale_name=en'>English</a>
+            </li>
+            <li class='dropdown'>
+                <a class='dropdown-toggle' data-toggle='dropdown' href='#'>
+                    <span class='hidden-sm'>当前城市：</span>
+                    <span class='fa fa-map-marker'></span>
+                    北京
+                    <span class='caret'></span>
+                </a>
+                <ul class='dropdown-menu' role='menu'>
+                    <li>
+                        <a href='/cities/shanghai'>上海</a>
+                    </li>
+                    <li>
+                        <a href='/cities/tianjin'>天津</a>
+                    </li>
+                    <li>
+                        <a href='/cities/hangzhou'>杭州</a>
+                    </li>
+                    <li>
+                        <a href='/cities/quanguo'>全国</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <ul class='nav navbar-nav middle-nav-ul hidden-xs'>
+            <li class='middle-nav-ul-li'>
+                |
+            </li>
+            <li class='dropdown'>
+                <a class='dropdown-toggle' data-toggle='dropdown' href='#'>
+                    产品列表
+                    <span class='caret'></span>
+                </a>
+                <ul class='dropdown-menu' role='menu'>
+                    {%for group in groups%}
+                    <li>
+                        <a href='/group/{{group._id+""}}'>{{group.groupName}}</a>
+                    </li>
+                    {%endfor%}
+
+
+                </ul>
+            </li>
+            <li class='middle-nav-ul-li'>
+                |
+            </li>
+            <li>
+                <a class='navbar-font-color' href='/stores'>门店</a>
+            </li>
+            <li class='middle-nav-ul-li'>
+                |
+            </li>
+            <li>
+                <a class='navbar-font-color' href='/events'>活动</a>
+            </li>
+            <li class='middle-nav-ul-li'>
+                |
+            </li>
+            <li>
+                <a class='navbar-font-color' href='/shop'>
+                    积分商城
+                </a>
+            </li>
+            <li class='middle-nav-ul-li'>
+                |
+            </li>
+            <li class='dropdown'>
+                <a class='dropdown-toggle' data-toggle='dropdown' href='#'>
+                    关于
+                    <span class='caret'></span>
+                </a>
+                <ul class='dropdown-menu' role='menu'>
+                    <li>
+                        <a href='/pages/huiyuan'>会员</a>
+                    </li>
+                    <li>
+                        <a href='/pages/lipinka'>礼品卡</a>
+                    </li>
+                    <li>
+                        <a href='/pages/bjdinggouxuzhi'>配送须知</a>
+                    </li>
+                    <li>
+                        <a href='/pages/paipai'>关于派悦坊</a>
+                    </li>
+                    <li>
+                        <a href='/pages/staff'>爱上派悦坊</a>
+                    </li>
+                    <li>
+                        <a href='/pages/recruit'>加入派悦坊</a>
+                    </li>
+                </ul>
+            </li>
+            <li class='middle-nav-ul-li'>
+                |
+            </li>
+            <li class='dropdown'>
+                <a class='dropdown-toggle' data-toggle='dropdown' href='#'>
+                    企业合作
+                    <span class='caret'></span>
+                </a>
+                <ul class='dropdown-menu' role='menu'>
+                    <li>
+                        <a href='/wedding'>甜品台</a>
+                    </li>
+                    <li>
+                        <a href='/free_tast'>企业试吃</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <ul class='nav navbar-nav navbar-right pc-navbar-right hidden-xs'>
+            <li id='sign-in-item'>
+                <a href='/users/sign_in'>登录</a>
+            </li>
+            <li id='sign-up-item'>
+                <a href='/users/sign_up'>注册</a>
+            </li>
+            <li id='shopping-cart-summary-nav'>
+                <a class='navbar-font-color' href='/shopping-cart'>
+                    <i class="fa fa-shopping-cart"></i>
+                    <!-- <span class="shopping-cart-items-count" id="product-total-count">0</span> -->
+                    <!-- <span class="shopping-cart-products-total" id="total-prices" style="display:none;"> ￥0</span> -->
+
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class='navbar navbar-default navbar-static-top navbar-fixed-top visible-xs mobile-header-nav' role='navigation'>
+    <div class='container' id='mobile-header-nav'>
+        <div class='navbar-header'>
+            <span class='fa fa-bars pnav-icon pnav-left-icon' id='toggle-mobile-dropdown-nav'></span>
+            <div class='navbar-brand'>
+                <a href='/'>
+                    <img alt="%e6%89%8b%e6%9c%ba%e7%ab%aflogo" src="/system/ad_images/mobile_images/000/000/010/original/%E6%89%8B%E6%9C%BA%E7%AB%AFlogo.png?1518602557"
+                    />
+                </a>
+                <a class='pnav-txt' href='/apis/set_current_locale?locale_name=en' style='color: white;'>En</a>
+            </div>
+            <a class='fa fa-map-marker pnav-icon' id='nav-select-city'>&nbsp;</a>
+            <a class='fa fa-phone pnav-icon' href='tel:4008314159'></a>
+        </div>
+        <div class='container nav navbar-nav navbar-right' id='mobile-navbar-right'>
+            <a class='col-xs-12 nav-list-city'>当前城市：北京</a>
+            <a class='col-xs-4 nav-list-content' id='show-city-select-pop'>
+                <img alt="Marker nav" src="/assets/nav/marker-nav-3a36f554aaea8089224ede8e028ba4f0.png" />
+                <div>切换城市</div>
+            </a>
+            <a class='col-xs-4 nav-list-content' href='/crm'>
+                <img alt="User nav" src="/assets/nav/user-nav-5f97c653a53d21ff4afa2e0c1ea180ec.png" />
+                <div>个人中心</div>
+            </a>
+            <a class='col-xs-4 nav-list-content' href='/categories/fantastic-specials'>
+                <img alt="Cake nav" src="/assets/nav/cake-nav-9e75ddec38a8e4ae4bb8e8087a86431f.png" />
+                <div>产品列表</div>
+            </a>
+            <a class='col-xs-4 nav-list-content' href='/pages/huiyuan'>
+                <img alt="Note nav" src="/assets/nav/note-nav-48b342e1312e1abfa776bd7c1bb70979.png" />
+                <div>关于</div>
+            </a>
+            <a class='col-xs-4 nav-list-content' href='/events'>
+                <span class='has-right-icon'>
+                    <img alt="Event nav" src="/assets/nav/event-nav-6f999683855a06ac92a9b6aa7b6fa0b8.png" />
+                    <div class='fa fa-circle red_right_icon red_nav_event'></div>
+                </span>
+                <div>活动</div>
+            </a>
+            <a class='col-xs-4 nav-list-content' href='/shop'>
+                <img alt="Point nav" src="/assets/nav/point-nav-e83209c472251bfdfc33ef1f06e55b82.png" />
+                <div>积分商城</div>
+            </a>
+        </div>
+    </div>
+    <a href='/'>
+        <div class='col-xs-2 mobile-nav-index div-20-width'>
+            <div class='col-xs-12 no-padding'>
+                <div class='nav-sup-new'>
+                    <img alt="Home" class="nav-icon" src="https://www.pantrysbest.com/assets/nav/home-00af911fd4f11c03297942252af6363a.png" />
+                </div>
+            </div>
+        </div>
+    </a>
+    {%for group in groups%}
+    <a href='/categories/fantastic-specials'>
+        <div class='col-xs-2 font10 mobile-nav' style='width: 20%'>
+            {{group.groupName}}
+        </div>
+    </a>
+    {%endfor%}
+</div>
+<div class='hidden-xs' style='height: 50px;'></div>
+<div class='visible-xs' style='height: 85px;'></div>
+<style>
+    .gallery-thumbs .swiper-wrapper .swiper-slide {
+        opacity: 0.5;
+    }
+
+    .gallery-thumbs .swiper-wrapper .swiper-slide-active {
+        opacity: 1;
+    }
+
+    .gallery-top .swiper-wrapper .swiper-slide {
+        max-width: 101%
+    }
+</style>
+<style>
+    .fly_img {
+        display: none;
+    }
+
+    .fly_to_cart {
+        z-index: 9999;
+        display: block;
+        position: absolute;
+        opacity: '0.6' animation myfirst 1s;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        /* Firefox: */
+        -moz-animation: myfirst 1s;
+        /* Safari and Chrome: */
+        -webkit-animation: myfirst 1s;
+        /* Opera: */
+        -o-animation: myfirst 1s;
+    }
+</style>
+<style>
+    @keyframes myfirst {
+        0% {
+            left: 0px;
+            top: 0px;
+        }
+        100% {
+            left: 500px;
+            top: 500px;
+        }
+    }
+
+    /* Firefox */
+
+    @-moz-keyframes myfirst {
+        0% {
+            left: 0px;
+            top: 0px;
+        }
+        100% {
+            left: 600px;
+            top: 600px;
+        }
+    }
+
+    /* Safari and Chrome */
+
+    @-webkit-keyframes myfirst {
+        0% {
+            left: 0px;
+            top: 0px;
+        }
+        100% {
+            left: 700px;
+            top: 700px;
+        }
+    }
+
+    /* Opera */
+
+    @-o-keyframes myfirst {
+        0% {
+            left: 0px;
+            top: 0px;
+        }
+        100% {
+            left: 800px;
+            top: 800px;
+        }
+    }
+</style>
+
+
+<div class='container' id='product-set-container'>
+    <div class='col-md-12 col-sm-12 col-xs-12 product-set-container-column'>
+        <img alt="1517416833000213373" class="fly_img" src="http://image.pantrysbest.com/product_sets/product_category/1517416833000213373"
+        />
+        <div class='hidden-xs'>
+            <div class='swiper-container gallery-top' style='margin-bottom: 15pt'>
+                <div class='swiper-wrapper'>
+                    {%for image in product.images%}
+                    <img alt="2018旺新春金砖礼盒" class="swiper-slide img-responsive" src="{{image.url}}" /> {%endfor%}
+                </div>
+            </div>
+            <div class='swiper-container gallery-thumbs'>
+                <div class='swiper-wrapper'>
+                    {%for image in product.images%}
+                    <img alt="2018旺新春金砖礼盒" class="swiper-slide img-responsive" src="{{image.url}}" /> {%endfor%}
+
+                </div>
+            </div>
+        </div>
+        <div class='hidden-md hidden-sm hidden-lg'>
+            <div class='swiper-container mobile-slideshows-swiper'>
+                <div class='swiper-wrapper'>
+                    {%for image in product.images%}
+
+                    <div class='swiper-slide'>
+                        <img alt="2018旺新春金砖礼盒" class="img-responsive" src="{{image.url}}" />
+                    </div>
+                    {%endfor%}
+
+                </div>
+                <div class='swiper-pagination mobile-swiper-pagination'></div>
+            </div>
+        </div>
+
+        <div class='detailed-product-set-info-container'>
+            <div class='row'>
+                <div class='col-md-7'>
+                    <h2>￥
+                        <span id="product-price"> {{product.price}}</span>
+                    </h2>
+                    <h3 id="product" data-productId="{{product._id+''}}">{{product.name}}</h3>
+                    <div class='long-description'>
+                        <p>
+                            <strong>
+                                <span style="color:#FF0000;">
+                                    <span style="font-size:11px;">商城直接购买或购买邦为系统的订单总额达到{{product.minScore /10000}}万</span>
+                                </span>
+                            </strong>
+                        </p>
+                        <p>{{product.summary}}</p>
+                        <!-- <p>
+                            <strong>
+                                <span style="color: rgb(255, 0, 0);">
+                                    <span style="font-size: 11px;">🎁购买此款礼盒可获赠2018精美台历1本</span>
+                                </span>
+                            </strong>
+                        </p> -->
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <h4>优惠券</h4>
+                        <div id="checked-tickets">
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-5 product-offerings" data-reactid=".0">
+                        <div class="product-sizes" data-reactid=".0.0">
+                            <span class="selected size-selection" data-reactid=".0.0.0">{{product.name}}</span>
+                        </div>
+                        <div class="product-count" data-reactid=".0.1">
+                            <div class="product-count-container" data-reactid=".0.1.0">
+                                <span data-reactid=".0.1.0.0">¥{{product.price}}</span>
+                                <span class="fa fa-minus" data-reactid=".0.1.0.1"></span>
+                                <input id="product-count" name="product_count" class="product-count" type="number" value="1" data-reactid=".0.1.0.2">
+                                <span class="fa fa-plus" data-reactid=".0.1.0.3"></span>
+
+                            </div>
+                            <div class="product-count-container" data-reactid=".0.1.0">
+                                <table style="border: 1px solid;">
+                                    <thead style="border: 1px solid;">
+                                        <th>单价</th>
+                                        <th>折扣</th>
+                                        <th>数量</th>
+                                        <th>减免</th>
+                                        <th>总价</th>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>{{product.price}}</td>
+                                            <td>
+                                                <span id="discount"> {{product.discount / 100}}</span>
+                                            </td>
+                                            <td id="count-num"> 2</td>
+                                            <td> -
+                                                <span id="less"> 800</span>
+                                            </td>
+                                            <td style="color:red" id="totalPrice">15200</td>
+                                            </td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+
+
+
+                            </div>
+                            <div id="action-buttons" data-reactid=".0.1.1">
+                                <div id="buy-now-button" data-reactid=".0.1.1.0" onclick="location.href='/user/shoping-cart'">立即购买</div>
+                                <div id="add-to-cart-button" data-reactid=".0.1.1.1">
+                                    <span class="fa fa-shopping-cart" data-reactid=".0.1.1.1.0"></span>
+                                    <span data-reactid=".0.1.1.1.1" onclick="addToShopingCar()"> 加入购物车</span>
+                                </div>
+                            </div>
+                            <div id="action-completed-status" data-reactid=".0.1.2"></div>
+                            <div data-reactid=".0.1.4"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class='categories-container'>
+                    <div class='tag-list-content'>
+                        {%for group in groups%}
+                        <a href='/group/{{group._id+""}}'>
+                            <span class='tag-name'>{{group.groupName}}</span>
+                        </a>
+                        {%endfor%}
+                    </div>
+                </div>
+                <div class='gray-2px-boder'></div>
+                <!-- <div>
+                        <span>您当前选择的城市是：</span>
+                        <span style='color: red;'>北京</span>
+                    </div> -->
+                <div class='gray-2px-boder'></div>
+                <!-- <div class='ingredients'>
+                        <div class='ingredients-header'>口味亮点</div>
+                        <div class='ingredients-description'>
+                            新西兰黄油、香草夹酱、加纳可可豆
+                        </div>
+                    </div>
+                     -->
+
+
+            </div>
+
+
+            <div class='divider'>&nbsp;</div>
+            <div class='more-detailed-info'>
+                <div class='bold-header'>
+                    <!-- 温馨提示 -->
+                </div>
+                <div class='wenxintishi'>
+                    <!-- 1、蛋糕收到后在2-3小时食用最佳, 纸杯蛋糕收到后在1小时食用最佳，如果食用不完请冷藏保存（冰激凌蛋糕请冷冻保存），在24小时内食用完毕 -->
+                    <br>
+                </div>
+            </div>
+            <br>
+            <table class='cake-size-table'>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!--  -->
+<a class="shopping-cart-info-content navbar navbar-fixed-bottom visible-xs" href="#">
+    <div class="col-xs-7 mobile-cart-info" style="margin-top:10px;">
+        <span class="fa fa-shopping-cart"></span>
+        <span class="shopping-cart-items-count" id="product-total-count">0</span>
+        <span class="shopping-cart-products-total" id="total-prices" style="display:none;"> ￥0</span>
+
+    </div>
+    <div class="col-xs-5 goto-cart-button" onclick="location.href='/user/shoping-cart'">去结算</div>
+</a>
+{%endblock%} {%block script%}
+<script>
+
+
+    $('.fa-plus').click(function () {
+        console.log($('#product-count').val())
+        let number = parseInt($('#product-count').val()) + 1;
+        $('#product-count').val(number);
+        countTotalPrice();
+
+    });
+
+    $('.fa-minus').click(function () {
+        console.log($('#product-count').val());
+        let number = parseInt($('#product-count').val());
+        if (number > 1) {
+            number = number - 1;
+        }
+        $('#product-count').val(number);
+        countTotalPrice();
+
+    })
+
+
+    function countTotalPrice() {
+        let price = parseInt($('#product-price').text());
+        let discount = parseInt($('#discount').text());
+        let num = parseInt($('#product-count').val());
+        $('#count-num').text(num);
+        let less = parseInt($('#less').text());
+        let totalPrice = price * discount * num - less;
+        $('#totalPrice').text(totalPrice);
+
+    }
+
+    countTotalPrice();
+
+    function getCheckedTickets() {
+        return $('#checked-tickets').find('p').toArray().map((pEl) => $(pEl).data('ticketid'))
+    }
+    function addToShopingCar() {
+        $.ajax({
+            url: "/createOrder/json", method: 'POST', data: {
+                product: $('#product').data('productid'),
+                num: $('#count-num').text(),
+                tickets: getCheckedTickets()
+            }, success: (rtn) => {
+                if (!rtn.ok) {
+                    location.href = "/login"
+                } else {
+                    let orders = rtn.data.orders;
+
+                    let totalProducts = 0
+                    let totalPrices = 0;
+                    orders.forEach(order => {
+                        totalPrices += order.product.price * order.num;
+                        totalProducts += order.num
+                    });
+                    $('#product-total-count').text(totalProducts).show();
+                    $('#total-prices').text(totalPrices).show();
+
+
+                }
+            }
+        })
+    }
+
+    $.ajax({
+        url: '/user/tickets/json', success: function (rtn) {
+
+            // console.log(rtn);
+            if (rtn.ok) {
+                let tickets = rtn.data;
+                for (let ticket of tickets) {
+                    $(`<p data-ticketid="${ticket._id}">
+                            <span style="font-size: 14px;">
+                                <strong>
+                                    <span style="color: rgb(255, 0, 0);" >🎁${ticket.reduction.title} x1 </span>
+                                </strong>
+                            </span>
+                        </p>
+                        `).appendTo('#checked-tickets');
+                }
+            } else {
+
+            }
+        }
+    })
+
+
+</script> {%endblock%}

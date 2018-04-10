@@ -1,0 +1,279 @@
+{%extends 'layout.html'%}{%block content%}
+
+<div class='container' id='v3-shopping-cart-container'>
+    <div class="col-md-12 col-sm-12 col-xs-12 padding-0px">
+
+        <div data-react-class="Cart" data-react-props="{&quot;cart_infos&quot;:{&quot;products&quot;:[{&quot;set_url&quot;:&quot;red-velvet&quot;,&quot;img_url&quot;:&quot;http://image.pantrysbest.com/product_sets/product_category/15174166880007465&quot;,&quot;show_name&quot;:&quot;大都会红丝绒&quot;,&quot;show_size&quot;:&quot;6吋&quot;,&quot;price&quot;:219.0,&quot;quantity&quot;:1,&quot;point&quot;:0,&quot;total_due&quot;:219.0,&quot;product_id&quot;:78,&quot;utensils&quot;:6,&quot;id&quot;:78},{&quot;set_url&quot;:&quot;2018-pie-day-set&quot;,&quot;img_url&quot;:&quot;http://image.pantrysbest.com/product_sets/product_category/1520477421177&quot;,&quot;show_name&quot;:&quot;2018派DAY礼盒&quot;,&quot;show_size&quot;:&quot;礼盒&quot;,&quot;price&quot;:150.0,&quot;quantity&quot;:1,&quot;point&quot;:0,&quot;total_due&quot;:150.0,&quot;product_id&quot;:10026,&quot;utensils&quot;:0,&quot;id&quot;:10026}],&quot;products_cost&quot;:369.0,&quot;products_count&quot;:2,&quot;product_ids&quot;:[78,10026],&quot;has_inventory_products&quot;:false,&quot;only_quanguo_order&quot;:false,&quot;has_quanguo_order&quot;:false,&quot;suggestion_products&quot;:[],&quot;suggestion_products_msg&quot;:&quot;&quot;,&quot;can_pack_tartlets&quot;:true,&quot;prdouct_delivery_notes&quot;:&quot;&quot;,&quot;current_city&quot;:{&quot;id&quot;:1,&quot;show_name&quot;:&quot;北京&quot;,&quot;name&quot;:&quot;北京&quot;},&quot;locale_city&quot;:{&quot;id&quot;:1,&quot;show_name&quot;:&quot;北京&quot;,&quot;name&quot;:&quot;北京&quot;},&quot;current_user&quot;:{&quot;id&quot;:174247,&quot;phone_number&quot;:&quot;13419597065&quot;,&quot;customer_id&quot;:354066},&quot;customer_info&quot;:{&quot;id&quot;:354066,&quot;status&quot;:&quot;普通&quot;,&quot;name&quot;:&quot;杨杰&quot;,&quot;vip_card&quot;:&quot;un_vip&quot;,&quot;remaining_points&quot;:200}}}">
+
+            <div class="col-md-12 col-sm-12 col-xs-12 padding-0px" data-reactid=".0">
+
+                <div class="col-md-12 col-sm-12 col-xs-12 " data-reactid=".0.0">
+                    <div class="col-md-12 col-sm-12 product-list-title hidden-xs" data-reactid=".0.0.0">
+                        <div class="col-md-2 col-sm-2 col-20px" data-reactid=".0.0.0.0">产品</div>
+                        <div class="col-md-2 col-sm-2 col-20px" data-reactid=".0.0.0.1">大小</div>
+                        <div class="col-md-3 col-sm-3 col-20px" data-reactid=".0.0.0.2">价格</div>
+                        <div class="col-md-3 col-sm-3 col-20px" data-reactid=".0.0.0.3">个数</div>
+                        <div class="col-md-2 col-sm-2 col-20px" data-reactid=".0.0.0.4">删除商品</div>
+                    </div>
+                    <div class="col-xs-12 product-list-title visible-xs" data-reactid=".0.0.1">
+                        <div class="col-xs-12" data-reactid=".0.0.1.0">产品</div>
+                    </div>
+                </div>
+                {% for order in orders%}
+                <div class="col-xs-12 col-md-12 col-sm-12 product-list " data-reactid=".0.2:0">
+                    <div class="col-md-12 col-sm-12 product-list-pc hidden-xs padding-0px " data-reactid=".0.2:0.0">
+                        <div class="col-md-2 col-sm-2 col-20px" data-reactid=".0.2:0.0.0">
+                            <img src="{{order.product.images[0].url}}" alt="大都会红丝绒" data-reactid=".0.2:0.0.0.0">
+                            <br data-reactid=".0.2:0.0.0.1">
+                            <span class="product-name" data-reactid=".0.2:0.0.0.2">{{order.product.name}}</span>
+                        </div>
+                        <div class="col-md-2 col-sm-2 col-20px info" data-reactid=".0.2:0.0.1">6吋</div>
+                        <div class="col-md-3 col-sm-3 col-20px info" data-reactid=".0.2:0.0.2">
+                            <span data-reactid=".0.2:0.0.2.0">¥
+                                <span id="price"> {{order.product.price}}</span>
+                            </span>
+                            <span data-reactid=".0.2:0.0.2.1"></span>
+                        </div>
+                        <div class="col-md-3 col-sm-3 col-20px info" data-reactid=".0.2:0.0.3">
+                            <span class="fa fa-minus" data-reactid=".0.2:0.0.3.0" onclick="lessOrderNum('{{order._id.toString()}}',{{order.num>1?order.num-1:order.num}} )"></span>
+                            <span style="padding:7%;" data-reactid=".0.2:0.0.3.1">
+                                <span id="num">{{order.num}}</span>
+                            </span>
+                            <span class="fa fa-plus" data-reactid=".0.2:0.0.3.2" onclick="addOrderNum('{{order._id.toString()}}',{{order.num+1}})"></span>
+                        </div>
+                        <div class="col-md-2 col-sm-2 col-20px info delete-cart-item" data-reactid=".0.2:0.0.4">
+                            <span class="fa fa-times" data-reactid=".0.2:0.0.4.0"></span>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 visible-xs product-list-mb padding-0px " data-reactid=".0.2:0.1">
+                        <div class="mb-info" data-reactid=".0.2:0.1.0">
+                            <img src="{{order.product.images[0].url}}" alt="大都会红丝绒" data-reactid=".0.2:0.1.0.0">
+                        </div>
+                        <div class="mb-info-price" data-reactid=".0.2:0.1.1">
+                            <div class="info-name" data-reactid=".0.2:0.1.1.0">{{order.product.name}}</div>
+                            <div class="info-price" data-reactid=".0.2:0.1.1.1">
+                                <span data-reactid=".0.2:0.1.1.1.0">¥
+                                    <span id="price"> {{order.product.price}}</span>
+                                </span>
+                                <span data-reactid=".0.2:0.1.1.1.1"></span>
+                            </div>
+                            <div class="product-count-list" data-reactid=".0.2:0.1.1.2">
+                                <span class="fa fa-minus" data-reactid=".0.2:0.1.1.2.0" onclick="lessOrderNum('{{order._id.toString()}}',{{order.num>1?order.num-1:order.num}})"></span>
+                                <span class="product-count" data-reactid=".0.2:0.1.1.2.1">
+                                    <span id="num">{{order.num}}</span>
+                                </span>
+                                <span class="fa fa-plus" data-reactid=".0.2:0.1.1.2.2" onclick="addOrderNum('{{order._id.toString()}}',{{order.num+1}})"></span>
+                            </div>
+                        </div>
+                        <div class="mb-info-delete" data-reactid=".0.2:0.1.2" onclick="removeOrder('{{order._id+''}}')">
+                            <span class="fa fa-times" data-reactid=".0.2:0.1.2.0"></span>
+                        </div>
+                    </div>
+                </div>
+                {%endfor%}
+
+            </div>
+
+            <div class="col-xs-12 col-md-12 col-sm-12 padding-0px " data-reactid=".0.3">
+                <div data-reactid=".0.3.0">
+                    <div class="mask-body" data-reactid=".0.3.0.3"></div>
+                    <div class="notes-pop base-pop" data-reactid=".0.3.0.4" style="left:19px;top:243.5px;display:none;">
+                        <div class="pop-close" data-reactid=".0.3.0.4.0">
+                            <span class="fa fa-times-circle-o" data-reactid=".0.3.0.4.0.0"></span>
+                        </div>
+                        <div class="pop-content" data-reactid=".0.3.0.4.1">
+                            <div class="pop-des" data-reactid=".0.3.0.4.1.0"></div>
+                        </div>
+                        <div class="pop-button-content" data-reactid=".0.3.0.4.2">
+                            <div class="btn pop-button" data-reactid=".0.3.0.4.2.0">确定</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+</div>
+
+<div class='mask-body' id='mask-body-bg'></div>
+<div id='data-select-container'></div>
+<div class='card-notify-bg-a'></div>
+<div class='pop_city_select' id='set_current_city'>
+    <div class='content_title'>
+        您当前所在的城市是:
+        <span style='color: #c30d22'>
+            <span class='fa fa-map-marker'></span>
+            武汉
+        </span>
+    </div>
+    <div class='content_title_no_border'>
+        <br> 是否需要切换到其他城市:
+    </div>
+    <div class='content row'>
+        <div class='col-xs-3 city_list'>
+            <div class='btn city_select current_city' data='beijing'>北京</div>
+        </div>
+        <div class='col-xs-3 city_list'>
+            <div class='btn city_select' data='shanghai'>上海</div>
+        </div>
+        <div class='col-xs-3 city_list'>
+            <div class='btn city_select' data='tianjin'>天津</div>
+        </div>
+        <div class='col-xs-3 city_list'>
+            <div class='btn city_select' data='hangzhou'>杭州</div>
+        </div>
+        <div class='col-xs-6 city_list'>
+            <div class='btn city_select' data='quanguo'>全国其他城市</div>
+        </div>
+    </div>
+    <div class='content_footer'>
+        <div class='btn setup_current_city' id='mobile_setup_current_city'>开始购物</div>
+    </div>
+    <div class='close-pop m-close-o visible-xs' id='close-city-select-pop'>
+        <span class='fa fa-times-circle-o'></span>
+    </div>
+    <div class='close-pop pc-close-o hidden-xs' id='close-city-select-pop'>
+        <span class='fa fa-times-circle-o'></span>
+    </div>
+</div>
+<div style='height: 35px'></div>
+<div class='footer text-muted'>
+    <div class='container footer-container'>
+        <div class='row'>
+            <div class='col-md-12 col-sm-12 hidden-xs'>
+                <div class='col-md-5 col-sm-5'>
+                    <div class='col-md-12 col-sm-12 pc-left'>
+                        <div class='info'>
+                            <span class='fa fa-phone fa_icon'></span>
+                            <span>4008-3-14159</span>
+                        </div>
+                        <div class='info'>
+                            <span class='fa fa-envelope fa_icon'></span>
+                            <span>order@pantrysbest.com</span>
+                        </div>
+                    </div>
+                </div>
+                <div class='col-md-2 col-sm-2 pc-center'>
+                    <a class='col-md-6 col-sm-6' href='http://weibo.com/piehouse' target='_blank'>
+                        <i class="fa fa-weibo fa-2x fa_icon"></i>
+                    </a>
+                    <a class='col-md-6 col-sm-6 wx-a' href='javascript:;' id='footer_wx_img'>
+                        <i class="fa fa-weixin fa-2x fa_icon"></i>
+                        <img alt="Wx code" class="img-responsive wx-code" id="footer_wx_code" src="/assets/wx_code-91f71945c25d7dfe496f931bcff976bf.png"
+                        />
+                    </a>
+                </div>
+                <div class='col-md-5 col-sm-5'>
+                    <img alt="Brand icons" class="img-responsive right-img" src="/assets/brand-icons-b7a42d80596318922d6f6fb848166249.png" />
+                </div>
+                <!-- <div class='col-md-12 col-sm-12 pc-addr'>
+                    <div class='info'>北京市朝阳区神路街39号10幢3层4段92-93</div>
+                    <div class='info'>Copyright 2010-2018 派悦坊，Ltd 京ICP备12046340</div>
+                </div> -->
+            </div>
+        </div>
+        <div class='visible-xs' id='phone-number'>
+            <a href='tel:4008314159'>
+                <i class="fa fa-phone"></i>
+                <!-- 4008-3-14159 -->
+            </a>
+        </div>
+        <div class='visible-xs' id='icp'>
+            Copyright 2010-2018 派悦坊，Ltd 京ICP备12046340
+        </div>
+    </div>
+</div>
+<div style='height: 20px'></div>
+<div aria-hidden='true' aria-labelledby='myModalLabel' class='modal fade' id='login-modal' role='dialog' tabindex='-1'>
+    <div class='modal-dialog'>
+        <div class='modal-content'></div>
+    </div>
+</div>
+
+<div class="visible-xs col-xs-12 shopping-cart-info-content navbar navbar-fixed-bottom padding-0px" data-reactid=".0.a.2.s">
+    <div class="col-xs-7 mobile-cart-info" style="margin-top:10px;" data-reactid=".0.a.2.s.0">
+        <span class="fa fa-shopping-cart" data-reactid=".0.a.2.s.0.0"></span>
+        <span class="shopping-cart-items-count" data-reactid=".0.a.2.s.0.1" id="totalNum" style="font-size:12px">6</span>
+        <span class="shopping-cart-products-total" data-reactid=".0.a.2.s.0.2" style="font-size:12px"> ¥
+            <span id="totalPrice" style="font-size:12px">0</span> * 0.85 =
+            <span id="actuallyPrice" style="color:red" style="font-size:12px"> 0</span>
+        </span>
+    </div>
+    <div class="col-xs-5 goto-cart-button" data-reactid=".0.a.2.s.2">支付</div>
+</div>
+
+
+<ul>
+    {%for order in orders%} {% for reduction in order.reductions %} {{reduction.title}} == {{reduction.value}} {%endfor%} {%endfor%}
+</ul>
+
+
+<script>
+    function removeOrder(orderId) {
+        $.ajax({
+            url: '/user/removeOrder?orderId=' + orderId,
+            method: 'GET',
+            success: function (rtn) {
+                if (rtn.ok) {
+                    location.reload()
+                } else {
+                    alert(rtn.data);
+                }
+            }
+        })
+    }
+    // 计算所有
+    function count() {
+        let products = $('.mb-info-price').toArray().map(productEl => {
+            return {
+                num: parseInt($(productEl).find('#num').text().trim()),
+                price: parseInt($(productEl).find('#price').text().trim())
+            }
+        });
+        // console.log(prices);
+        let totalPrice = 0;
+        let totalNum = 0;
+        products.forEach(function (product) {
+            totalPrice += product.price * product.num;
+            totalNum += product.num;
+        });
+        $('#totalPrice').text(totalPrice);
+        $('#actuallyPrice').text(totalPrice * 0.85)
+        $('#totalNum').text(totalNum);
+    }
+    count();
+    function addOrderNum(orderId, num) {
+        $.ajax({
+            url: '/user/addOrderNum?orderId=' + orderId + '&num=' + num,
+            success: function (rtn) {
+                if (rtn.ok) {
+                    location.reload()
+                } else {
+                    alert(rtn.data)
+                }
+            }
+        })
+
+    }
+
+    function lessOrderNum(orderId, num) {
+        $.ajax({
+            url: '/user/lessOrderNum?orderId=' + orderId + '&num=' + num,
+            success: function (rtn) {
+                if (rtn.ok) {
+                    location.reload();
+                } else {
+                    alert(rtn.data);
+                }
+            }
+        })
+    }
+    /**正常逻辑是调用微信支付功能 */
+    // function pay() {
+    //     $.ajax({
+    //         url:
+    //         })
+    // }
+
+</script> {% endblock %}

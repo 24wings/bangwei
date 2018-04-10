@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>进度查询</title>
+    <script src="https://cdn.bootcss.com/jquery/2.2.2/jquery.min.js"></script>
+    <style>
+        .border-bottom-1px {
+            box-shadow: inset 0px -1px 1px -1px #c8c7cc;
+        }
+
+        .border-top-1px {
+            box-shadow: inset 0px 1px 1px -1px #c8c7cc;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            -webkit-user-select: none;
+            -webkit-tap-highlight-color: rgba(200, 200, 200, 0);
+        }
+
+        h1 h2 h3 h4 h5 h6 {
+            font-size: 100%
+        }
+
+        a {
+            text-decoration: none;
+            color: #000
+        }
+
+        li,
+        ul,
+        ol {
+            list-style-type: none
+        }
+
+        img {
+            border: 0
+        }
+
+        input {
+            outline: 0;
+            border: 0;
+            border: 1px solid #ccc;
+            -webkit-appearance: none
+        }
+
+        button {
+            outline: 0
+        }
+
+        * {
+            -moz-user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            -khtml-user-select: none;
+            user-select: none;
+            -o-user-select: none;
+            user-select: none
+        }
+
+        html {
+            font-size: 16px;
+            width: 100%;
+            height: 100%;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
+        }
+
+        body {
+            background: #fff
+        }
+
+        @media screen and (min-width:375px) {
+            html {
+                font-size: calc(100%+2 *(100vw - 375px) / 39);
+                font-size: calc(16px+2 *(100vw - 375px) / 39)
+            }
+        }
+
+        @media screen and (min-width:414px) {
+            html {
+                font-size: calc(112.5%+4 *(100vw - 414px) / 586);
+                font-size: calc(18px+4 *(100vw - 414px) / 586)
+            }
+        }
+
+        @media screen and (min-width:600px) {
+            html {
+                font-size: calc(125%+4 *(100vw - 600px) / 400);
+                font-size: calc(20px+4 *(100vw - 600px) / 400)
+            }
+        }
+
+        @media screen and (min-width:1000px) {
+            html {
+                font-size: calc(137.5%+6 *(100vw - 1000px) / 1000);
+                font-size: calc(22px+6 *(100vw - 1000px) / 1000)
+            }
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            background: url("/images/jj1.png") no-repeat;
+            background-size: 100% 100%;
+            background-position: 0 0;
+            overflow: hidden;
+        }
+
+        .box {
+            width: 100%;
+            height: 100%;
+            overflow-y: auto;
+        }
+
+        .logo {
+            width: 100%;
+            display: block;
+            margin-top: 60px;
+        }
+
+        .weixin {
+            width: 100%;
+            display: block;
+            margin-top: 30px;
+        }
+
+        .form {
+            width: 90%;
+            height: auto;
+            margin: 0 auto;
+            margin-top: 40px;
+        }
+
+        .dai {
+            width: 100%;
+            height: 50px;
+            margin-top: 20px;
+        }
+
+        .dai-caidan {
+            width: 46%;
+            height: 50px;
+            float: left;
+            background: rgba(255, 255, 255, .6);
+            font-size: 1rem;
+            text-align: center;
+            line-height: 50px;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .dai-xuanxiang {
+            width: 46%;
+            height: 50px;
+            float: left;
+            background: rgba(255, 255, 255, .6);
+            margin-left: 8%;
+        }
+
+        .dai-xuanxiang>span {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: rgb(241, 204, 123);
+            text-align: center;
+            font-size: 12px;
+            line-height: 20px;
+            display: block;
+            float: left;
+            margin-top: 15px;
+            margin-left: 10px;
+            color: #fff;
+        }
+
+        .xiala {
+            width: 70%;
+            height: 20px;
+            font-size: 12px;
+            position: relative;
+            float: right;
+            line-height: 20px;
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .xiala ul {
+            width: 100%;
+            height: 0;
+            overflow: hidden;
+            position: absolute;
+            top: 20px;
+            left: 0;
+            background: #fff;
+        }
+
+        .xiala ul li {
+            font-size: 12px;
+            line-height: 20px;
+        }
+
+        .xiala ul li:hover {
+            background: #ccc;
+        }
+
+        .auto {
+            height: auto !important;
+            z-index: 999;
+            background: transparent;
+        }
+
+        .dai-qian {
+            width: 46%;
+            height: 50px;
+            float: left;
+            background: rgba(255, 255, 255, .6);
+            margin-left: 8%;
+            text-align: center;
+            line-height: 50px;
+            font-size: 1rem;
+            color: rgb(230, 64, 14);
+            font-weight: 600px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="box">
+        <img src="/images/hh1.png" alt="" class="logo">
+        <img src="/images/kk1_02.png" alt="" class="weixin">
+        <div class="form">
+            <div class="dai">
+                <div class="dai-caidan">待审核订单</div>
+                <div class="dai-xuanxiang">
+                    <span>{{wait.length}}</span>
+                    <div class="xiala">
+                        {% if wait.length>0%}{{wait[wait.length-1].shopName}} {% endif%}
+                        <ul>
+                            {%for record in wait%}
+                            <li>{{record.shopName}}</li>
+                            {%endfor%}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="dai">
+                <div class="dai-caidan">已审核通过</div>
+                <div class="dai-xuanxiang">
+                    <span>{{pass.length}}</span>
+                    <div class="xiala">
+                        {% if pass.length>0%}{{pass[pass.length-1].shopName}} {% endif%}
+                        <ul>
+                            {% for record in pass%}
+                            <li>{{record.shopName}}</li>
+
+                            {%endfor%}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="dai">
+                <div class="dai-caidan">待审核订单</div>
+                <div class="dai-xuanxiang">
+                    <span>{{fail.length}}</span>
+                    <div class="xiala">
+                        {% if fail.length>0%}{{fail[fail.length-1].shopName}} {% endif%}
+                        <ul>
+                            <li *ngFor="for record in fail">{{record.shopName}}</li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="dai">
+                <div class="dai-caidan">奖励总金额</div>
+                <div class="dai-qian">
+                    {{rewardMoney}}元
+                </div>
+            </div>
+            <div class="dai">
+                <div class="dai-caidan">已结算金额</div>
+                <div class="dai-qian">
+                    {{rewardMoneyGain}}元
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $('.xiala').click(function () {
+            $(this).find('ul').toggleClass('auto')
+        })
+    </script>
+</body>
+
+
+</html>

@@ -1,0 +1,300 @@
+{% extends 'layout.html'%} {%block content%}
+<div class='swiper-container pc-slideshows-swiper' id='front-page-carousel'>
+    <div class='swiper-wrapper'>
+        {%for product in products%}
+        <div class='swiper-slide'>
+            <a href='/product/{{product._id+' '}}'>
+                <img alt='{{product.name}}' src='{{product.images[0].url}}' style='width: 100%' title='{{product.name}}'>
+            </a>
+        </div>
+        {%endfor%}
+
+    </div>
+    <div class='swiper-pagination pc-swiper-pagination'></div>
+</div>
+<div class='swiper-container mobile-slideshows-swiper' id='mobile-front-page-carousel' style='margin-top:-35px'>
+    <div class='swiper-wrapper'>
+        {%for product in products%}
+        <div class='swiper-slide'>
+            <a href='/product/{{product._id+' '}}'>
+                <img alt='{{product.name}}' src='{{product.images[0].url}}' style='width: 100%' title='{{product.name}}'>
+            </a>
+        </div>
+        {%endfor%}
+    </div>
+    <div class='swiper-pagination mobile-swiper-pagination'></div>
+</div>
+
+
+<div class='container marketing center'>
+    <div class='col-md-12 col-sm-12 hidden-xs city_page_category'>
+        {% for group in groups%}
+        <div class='city_page_category_detail'>
+
+            <a href='/group/{{group._id+""}}' style='width: 100%'>
+                <div class='has-img-icon' href='/group/{{group._id+""}}' style='width: 100%' title='年货精选'>
+                    <img alt='年货精选' class='img-responsive' src='{{group.image.url}}' style='width: 100%' title='年货精选'>
+                </div>
+                <div class='product-category-link' href='/group/{{group._id+""}}'></div>
+                <div style='position: relative; margin-top: -16%;color: white;font-size: 1.2vw;'>{{group.groupName}}</div>
+            </a>
+
+        </div>
+        {%endfor%}
+
+
+    </div>
+    <div class='row' style='margin-bottom: 0'>
+        <div class='col-md-12 col-sm-12 col-xs-12 visible-xs city_page_category_m'>
+            {% for group in groups%}
+            <div class='col-xs-6 visible-xs' style='padding: 1.67%;padding-bottom: 0.2%'>
+                <a href='/group/{{group._id+""}}'>
+                    <div alt='年货精选' class='has-img-icon' href='/group/{{group._id}}' title='年货精选'>
+                        <img alt='年货精选' class='img-responsive' src='{{group.image.url}}' style='width: 100%' title='年货精选'>
+                    </div>
+                    <div class='product-category-link' href='/group/{{group._id+""}}'></div>
+                    <div style='position: relative; margin-top: -19%;color: white;font-size:2.7vw;cursor:pointer'>{{group.groupName}}</div>
+                </a>
+            </div>
+            {%endfor%}
+
+        </div>
+    </div>
+    {% for group in groups %}
+    <div>
+        <div class='beta-front-page-header hidden-xs' style='margin-top: 1%; margin-bottom: 1%'>
+            <b class='pantry-brown-title pantry-brown-title-pc'>{{group.groupName}}</b>
+        </div>
+        <div class='beta-front-page-header visible-xs' style='margin-top: 2%; margin-bottom: 2%'>
+            <b class='pantry-brown-title'>{{group.groupName}}</b>
+        </div>
+        <div class='col-md-12 col-sm-12 col-xs-12 city_page_popular'>
+            {%for product in group.children%}
+            <div class='col-md-3 col-sm-3 hidden-xs city_page_popular_detail'>
+                <div class='col-md-12' style='padding-left: 0;padding-right: 0'>
+                    <a class='has-img-icon' href='/product/{{product._id+' '}}'>
+                        <img alt='{{product.name}}
+' class='img-responsive' src='{{product.images[0].url}}' title='{{product.name}}
+'>
+                    </a>
+                    <div class='col-md-7' style='padding: 0'>
+                        <a class='city-popular-font city-popular-pc-font pc-size-box pc-size-box-1' data-i='1' href='/product/{{product._id+""}}'>
+                            <span style='padding: 0'>{{product.name}}</span>
+                        </a>
+                    </div>
+                    <div class='col-md-5' style='padding: 0'>
+                        <span class='city-popular-chart-font city-popular-pc-font' onClick='addProduct(1042)'>立即购买 &gt;</span>
+                    </div>
+                    <div class='col-md-12 city-popular-size-font city-popular-size-font-pc'> ¥{{product.price}}</div>
+                </div>
+            </div>
+            {%endfor%} {%for product in group.children%}
+            <div class='col-xs-6 visible-xs city_page_popular_detail_m'>
+                <div class='col-xs-12' style='padding-left: 0;padding-right: 0'>
+                    <a class='has-img-icon' href='/product/{{product._id+""}}' style='width: 100%'>
+                        <img alt='2018旺新春金砖礼盒' class='img-responsive' src='{{product.images[0].url}}' style='width: 100%' title='2018旺新春金砖礼盒'>
+                    </a>
+                </div>
+                <div class='col-xs-7' style='padding: 0'>
+                    <a class='city-popular-font m-size-box m-size-box-1' data-i='2' href='/product/{{product._id+""}}'>
+                        <span style='padding: 0'>{{product.name}}</span>
+                    </a>
+                </div>
+                <div class='col-xs-5' style='padding: 0'>
+                    <span class='city-popular-chart-font' onClick='addProduct(10022)'>立即购买 &gt;</span>
+                </div>
+                <div class='col-xs-12 city-popular-size-font' style="display:flex;justify-content:space-between;">
+                    <span>¥{{product.price}}</span>
+                    <span>{{product.unit}}</span>
+                </div>
+            </div>
+            {%endfor%}
+
+
+        </div>
+    </div>
+    {%endfor%}
+    <div class='beta-front-page-header hidden-xs' style='margin-top: 2%'>
+        <b class='pantry-brown-title pantry-brown-title-pc'>热门标签</b>
+    </div>
+    <div class='beta-front-page-header visible-xs' style='margin-top: 2%; margin-bottom: 1%'>
+        <b class='pantry-brown-title'>热门标签</b>
+    </div>
+    <div class='row hidden-xs col-md-12 city_page_tag' style='padding-left: 30px; padding-right: 30px;'>
+        <a class='has-img-icon' href='/categories/chinese-new-year' style='width: 20%; margin-left: 0;margin-right:0;float: left;margin-top: -1%;padding-left:30px;padding-right:30px'>
+            <img alt='春节' class='img-responsive' src='http://image.pantrysbest.com/slideshows/1517212761173' style='width: 100%; margin-left: 0;margin-right:0'
+                title='春节'>
+            <div style='margin-top: -63%;color: white;font-size: 1.4vw;'>春节</div>
+        </a>
+        <a class='has-img-icon' href='/categories/cakes' style='width: 20%; margin-left: 0;margin-right:0;float: left;margin-top: -1%;padding-left:30px;padding-right:30px'>
+            <img alt='生日蛋糕' class='img-responsive' src='http://image.pantrysbest.com/slideshows/1517212697031' style='width: 100%; margin-left: 0;margin-right:0'
+                title='生日蛋糕'>
+            <div style='margin-top: -63%;color: white;font-size: 1.4vw;'>生日蛋糕</div>
+        </a>
+        <a class='has-img-icon' href='/categories/afternoon_tea' style='width: 20%; margin-left: 0;margin-right:0;float: left;margin-top: -1%;padding-left:30px;padding-right:30px'>
+            <img alt='派对聚会' class='img-responsive' src='http://image.pantrysbest.com/slideshows/1517212778084' style='width: 100%; margin-left: 0;margin-right:0'
+                title='派对聚会'>
+            <div style='margin-top: -63%;color: white;font-size: 1.4vw;'>派对聚会</div>
+        </a>
+        <a class='has-img-icon' href='/categories/fruits' style='width: 20%; margin-left: 0;margin-right:0;float: left;margin-top: -1%;padding-left:30px;padding-right:30px'>
+            <img alt='水果' class='img-responsive' src='http://image.pantrysbest.com/slideshows/1517212683069' style='width: 100%; margin-left: 0;margin-right:0'
+                title='水果'>
+            <div style='margin-top: -63%;color: white;font-size: 1.4vw;'>水果</div>
+        </a>
+        <a class='has-img-icon' href='/categories/cupcakes' style='width: 20%; margin-left: 0;margin-right:0;float: left;margin-top: -1%;padding-left:30px;padding-right:30px'>
+            <img alt='纸杯蛋糕' class='img-responsive' src='http://image.pantrysbest.com/slideshows/1517212717287' style='width: 100%; margin-left: 0;margin-right:0'
+                title='纸杯蛋糕'>
+            <div style='margin-top: -63%;color: white;font-size: 1.4vw;'>纸杯蛋糕</div>
+        </a>
+    </div>
+    <div class='row visible-xs col-xs-12 city_page_tag_m'>
+        <a class='has-img-icon' href='/categories/chinese-new-year' style='width: 33.33%; margin-left: 0;margin-right:0;float: left;margin-top: -5%'>
+            <img alt='春节' class='img-responsive' src='http://image.pantrysbest.com/slideshows/1517466298112' style='width: 100%; margin-left: 0;margin-right:0'
+                title='春节'>
+            <div style='margin-top: -60%;color: white;font-size:4.5vw;padding-left: 10%;padding-right:10%'>春节</div>
+        </a>
+        <a class='has-img-icon' href='/categories/cakes' style='width: 33.33%; margin-left: 0;margin-right:0;float: left;margin-top: -5%'>
+            <img alt='生日蛋糕' class='img-responsive' src='http://image.pantrysbest.com/slideshows/1517212705293' style='width: 100%; margin-left: 0;margin-right:0'
+                title='生日蛋糕'>
+            <div style='margin-top: -60%;color: white;font-size:4.5vw;padding-left: 10%;padding-right:10%'>生日蛋糕</div>
+        </a>
+        <a class='has-img-icon' href='/categories/afternoon_tea' style='width: 33.33%; margin-left: 0;margin-right:0;float: left;margin-top: -5%'>
+            <img alt='派对聚会' class='img-responsive' src='http://image.pantrysbest.com/slideshows/1517466174127' style='width: 100%; margin-left: 0;margin-right:0'
+                title='派对聚会'>
+            <div style='margin-top: -60%;color: white;font-size:4.5vw;padding-left: 10%;padding-right:10%'>派对聚会</div>
+        </a>
+    </div>
+    <div class='row visible-xs' style='margin-top: 2%;'>
+        <div class='col-xs-12 col-md-12 visible-xs' style='padding-left: 0;padding-right: 0'>
+            <a class='has-img-icon' href='/events/spring-blooms-activity'>
+                <img alt='2018花似锦新春礼遇' class='img-responsive' src='http://image.pantrysbest.com/slideshows/1519273795775' style='width: 100%'
+                    title='2018花似锦新春礼遇'>
+            </a>
+            <a class='product-category-link' href='/events/spring-blooms-activity'></a>
+        </div>
+        <div class='col-xs-12 col-md-12 visible-xs' style='padding-left: 0;padding-right: 0'>
+            <a class='has-img-icon' href='https://www.pantrysbest.com/stores'>
+                <img alt='门店' class='img-responsive' src='http://image.pantrysbest.com/slideshows/1517291723125' style='width: 100%' title='门店'>
+            </a>
+            <a class='product-category-link' href='https://www.pantrysbest.com/stores'></a>
+        </div>
+        <div class='col-xs-12 col-md-12 visible-xs' style='padding-left: 0;padding-right: 0'>
+            <a class='has-img-icon' href='https://www.pantrysbest.com/pages/recruit'>
+                <img alt='招聘' class='img-responsive' src='http://image.pantrysbest.com/slideshows/1517291754385' style='width: 100%' title='招聘'>
+            </a>
+            <a class='product-category-link' href='https://www.pantrysbest.com/pages/recruit'></a>
+        </div>
+        <div class='col-xs-12 col-md-12 visible-xs' style='padding-left: 0;padding-right: 0'>
+            <a class='has-img-icon' href='https://www.pantrysbest.com/shop'>
+                <img alt='积分商城' class='img-responsive' src='http://image.pantrysbest.com/slideshows/1517291739999' style='width: 100%' title='积分商城'>
+            </a>
+            <a class='product-category-link' href='https://www.pantrysbest.com/shop'></a>
+        </div>
+    </div>
+    <div class='col-md-12 col-sm-12 hidden-xs city_page_bottom'>
+        <div class='col-md-12 hidden-xs city_page_bottom_detail'>
+            <div>
+                <a class='has-img-icon' href='/events/spring-blooms-activity' style='width: 100%'>
+                    <img alt='2018花似锦新春礼遇' class='img-responsive' src='http://image.pantrysbest.com/slideshows/1519273790254' style='width: 100%'
+                        title='2018花似锦新春礼遇'>
+                </a>
+                <a class='product-category-link' href='/events/spring-blooms-activity'></a>
+            </div>
+        </div>
+        <div class='col-md-12 hidden-xs city_page_bottom_detail'>
+            <div>
+                <a class='has-img-icon' href='https://www.pantrysbest.com/stores' style='width: 100%'>
+                    <img alt='门店' class='img-responsive' src='http://image.pantrysbest.com/slideshows/1517291718383' style='width: 100%' title='门店'>
+                </a>
+                <a class='product-category-link' href='https://www.pantrysbest.com/stores'></a>
+            </div>
+        </div>
+        <div class='col-md-12 hidden-xs city_page_bottom_detail'>
+            <div>
+                <a class='has-img-icon' href='https://www.pantrysbest.com/pages/recruit' style='width: 100%'>
+                    <img alt='招聘' class='img-responsive' src='http://image.pantrysbest.com/slideshows/1517291750741' style='width: 100%' title='招聘'>
+                </a>
+                <a class='product-category-link' href='https://www.pantrysbest.com/pages/recruit'></a>
+            </div>
+        </div>
+        <div class='col-md-12 hidden-xs city_page_bottom_detail'>
+            <div>
+                <a class='has-img-icon' href='https://www.pantrysbest.com/shop' style='width: 100%'>
+                    <img alt='积分商城' class='img-responsive' src='http://image.pantrysbest.com/slideshows/1517291736220' style='width: 100%' title='积分商城'>
+                </a>
+                <a class='product-category-link' href='https://www.pantrysbest.com/shop'></a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class='pop_city_select' id='set_current_city'>
+    <div class='content_title'>
+        您当前所在的城市是:
+        <span style='color: #c30d22'>
+            <span class='fa fa-map-marker'></span>
+            武汉
+        </span>
+    </div>
+    <div class='content_title_no_border'>
+        <br> 是否需要切换到其他城市:
+    </div>
+    <div class='content row'>
+        <div class='col-xs-3 city_list'>
+            <div class='btn city_select current_city' data='beijing'>北京</div>
+        </div>
+        <div class='col-xs-3 city_list'>
+            <div class='btn city_select' data='shanghai'>上海</div>
+        </div>
+        <div class='col-xs-3 city_list'>
+            <div class='btn city_select' data='tianjin'>天津</div>
+        </div>
+        <div class='col-xs-3 city_list'>
+            <div class='btn city_select' data='hangzhou'>杭州</div>
+        </div>
+        <div class='col-xs-6 city_list'>
+            <div class='btn city_select' data='quanguo'>全国其他城市</div>
+        </div>
+    </div>
+    <div class='content_footer'>
+        <div class='btn setup_current_city' id='mobile_setup_current_city'>开始购物</div>
+    </div>
+    <div class='close-pop m-close-o visible-xs' id='close-city-select-pop'>
+        <span class='fa fa-times-circle-o'></span>
+    </div>
+    <div class='close-pop pc-close-o hidden-xs' id='close-city-select-pop'>
+        <span class='fa fa-times-circle-o'></span>
+    </div>
+</div>
+<div class='navbar navbar-fixed-bottom visible-xs mobile-footer-nav'>
+    <a href='/'>
+        <div class='col-xs-4 mobile-nav-index'>
+            <div class='col-xs-12 no-padding'>
+                <div class='nav-sup-new'>
+                    <img alt="Home current" class="nav-icon" src="https://www.pantrysbest.com/assets/nav/home-current-00af911fd4f11c03297942252af6363a.png"
+                    />
+                </div>
+            </div>
+        </div>
+    </a>
+    <a href='/crm'>
+        <div class='col-xs-4 mobile-nav-index'>
+            <div class='col-xs-12 no-padding'>
+                <div class='nav-sup-new'>
+                    <img alt="User" class="nav-icon v2-nav-icon" src="https://www.pantrysbest.com/assets/nav/user-4b445b2b521200758927f7a54531b0f5.png"
+                    />
+                </div>
+            </div>
+        </div>
+    </a>
+    <a href='/shopping-cart'>
+        <div class='col-xs-4 mobile-nav-index'>
+            <div class='col-xs-12 no-padding'>
+                <div class='nav-sup-new'>
+                    <img alt="Cart" class="nav-icon v2-nav-icon" src="https://www.pantrysbest.com/assets/nav/cart-4f87c281f3e56c61e0ecf398be10ae67.png"
+                    />
+                </div>
+            </div>
+        </div>
+    </a>
+</div>
+{%endblock%}

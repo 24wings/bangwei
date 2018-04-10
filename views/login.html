@@ -1,0 +1,127 @@
+{%extends 'layout.html'%} {%block content%}
+
+<div class="container visible-xs col-xs-12" style="margin-bottom: 0%;margin-top: -35px;padding-right: 0px; width:100%">
+    <div style="padding: 0;margin: 0; width:100%">
+        <!-- <img class="bird-in-triangle change-sign-in-type sms-login-method" src="https://www.pantrysbest.com/assets/mobile_login-0a5ecdb34ad8edf05ec722a8a4450b40.png"
+            style="display: block;"> -->
+        <!-- <img class="bird-in-triangle change-sign-in-type pwd-login-method" src="https://www.pantrysbest.com/assets/pc_login-4bf5cbeabee38fe0bba9cd048e5410e1.png" -->
+        <!-- style="display: none;"> -->
+        <!-- <img class="pwd-login-method current" src="https://www.pantrysbest.com/assets/password_login_tip-0582b1c9849edffef77e27b8e1bf7789.png" -->
+        <!-- style="float: right; margin-top: 5%; display: none;"> -->
+        <!-- <img class="sms-login-method" src="https://www.pantrysbest.com/assets/sms_code_login_tip-379d62ba275ac6e8644ff56e2369f73a.png"
+            style="float: right; margin-top: 5%; display: block;"> -->
+    </div>
+    <div class="sign_in_logo_div">
+        <img src="https://www.pantrysbest.com/assets/sign_in_logo-fe90d85f4876a077a0b0984521b8368a.png" style="width: 30%">
+    </div>
+</div>
+<div class="container" id="login-page-container" style="margin-top: -10px">
+    <div class="row">
+        <div class="col-md-1 hidden-sm hidden-xs"></div>
+        <div class="col-md-5 col-sm-7 hidden-xs login-left-column">
+            <div class="login-left-image">
+                <a href="https://www.pantrysbest.com/cities/beijing/categories/disney/products/winnie-the-pooh-cupcake-set">
+                    <img alt="https://www.pantrysbest.com/%e5%ae%98%e7%bd%91%e7%99%bb%e5%bd%95%e9%a1%b5%e9%9d%a2%e7%ba%b8%e6%9d%af%e8%9b%8b%e7%b3%95"
+                        src="https://www.pantrysbest.com/system/ad_images/pc_images/000/000/005/original/%E5%AE%98%E7%BD%91%E7%99%BB%E5%BD%95%E9%A1%B5%E9%9D%A2%E7%BA%B8%E6%9D%AF%E8%9B%8B%E7%B3%95.jpg?1519722861">
+                </a>
+            </div>
+        </div>
+        <div class="col-md-5 col-sm-4 col-xs-12 login-container-div">
+            <div class="hidden-xs login-div col-xs-6 login-container-title">
+                <div style="padding: 0;margin: 0; width:100%">
+                    <img class="bird-in-triangle change-sign-in-type sms-login-method" src="https://www.pantrysbest.com/assets/mobile_login-0a5ecdb34ad8edf05ec722a8a4450b40.png"
+                        style="display: block;">
+                    <img class="bird-in-triangle change-sign-in-type pwd-login-method" src="https://www.pantrysbest.com/assets/pc_login-4bf5cbeabee38fe0bba9cd048e5410e1.png"
+                        style="display: none;">
+                    <img class="pwd-login-method current" src="https://www.pantrysbest.com/assets/password_login_tip-0582b1c9849edffef77e27b8e1bf7789.png"
+                        style="float: right; margin-top: 0%; width: 50%; display: none;">
+                    <img class="sms-login-method" src="https://www.pantrysbest.com/assets/sms_code_login_tip-379d62ba275ac6e8644ff56e2369f73a.png"
+                        style="float: right; margin-top: 0%; width: 50%; display: block;">
+                    <div class="col-md-12 pantry-green-title login-title pwd-login-method" style="display: none;">手机扫码，安全登陆</div>
+                    <div class="col-md-12 pantry-green-title login-title sms-login-method" style="display: block;">密码登录</div>
+                </div>
+            </div>
+            <div class="alert alert-warning visible-xs" style="margin-top: 2%; margin-bottom: 0">
+                <p>查看个人中心，请先登录</p>
+            </div>
+            <div class="login-text">
+                <div class="alert alert-warning login-div col-xs-6 hidden-xs" style="margin-top: 10%; margin-bottom: 0; width:290px">
+                    <p>查看个人中心，请先登录</p>
+                </div>
+                <!-- /%h3.login-header #{header_text} -->
+                <div class="login-div" style="display: none">
+                    <span class="user-container" id="user-login-container">
+                        <span class="login-header left_title current">密码登录在这里</span>
+                        <span class="login-header right_title">手机号快捷登录</span>
+                    </span>
+                </div>
+                <form accept-charset="UTF-8" class="new_user username-login-container" id="new_user" method="post" style="display: block;">
+                    <div style="display:none">
+                        <input name="utf8" type="hidden" value="✓">
+                        <input name="authenticity_token" type="hidden" value="YJPci6pmJXQ4iaTPWiB5FcYAlvhzu/SCv3H1EjNxg1E=">
+                    </div>
+                    <input id="wx_union_id" name="wx_union_id" type="hidden">
+                    <div class="login-div pantry-margin-top-0">
+                        <input autofocus="autofocus" class="login-input form-input" id="user_login" name="nickname" placeholder="输入注册邮箱／手机号" tabindex="1"
+                            type="text">
+                    </div>
+                    <div class="login-div">
+                        <input autocomplete="off" class="login-input form-input" id="user_password" name="openid" placeholder="登录密码" tabindex="1"
+                            type="password">
+                    </div>
+                    <div class="login-div">
+                        <input name="user[remember_me]" type="hidden" value="0">
+                        <input checked="checked" id="user_remember_me" name="user[remember_me]" type="checkbox" value="1">
+                        <label>保持登录状态</label>
+                        <a class="login-link-color" href="/users/password/new" style="float: right">忘记密码</a>
+                    </div>
+                    <div class="login-div col-xs-12 pantry-padding-0px">
+                        <!-- <a class="btn sign-up-button weixin_signup weixin_signup_jump btn col-xs-6" href="/users/sign_up" style="width: 45%; margin-right: auto;margin-bottom: 0">注册</a> -->
+                        <input class="btn col-xs-6" id="login-button" style="width: 45%;float:right;margin-bottom: 0" tabindex="1" type="submit"
+                            value="登录">
+                    </div>
+                </form>
+
+                <div class="login-div phonenumber-login-container" style="display: none;">
+                    <div data-react-class="PhoneSign" data-react-props="{&quot;redirect_url&quot;:&quot;https://www.pantrysbest.com/crm&quot;,&quot;source&quot;:&quot;fast_login&quot;,&quot;button_name&quot;:&quot;登录&quot;,&quot;sign_up_name&quot;:&quot;注册&quot;,&quot;sign_up_url&quot;:&quot;/users/sign_up&quot;}">
+                        <div class="phone-container" data-reactid=".0">
+                            <div class="login-div col-xs-12 pantry-padding-0px pantry-margin-top-0" data-reactid=".0.0">
+                                <input id="phone_number" class="form-input" name="phone_number" type="tel" maxlength="11" placeholder="手机号" data-reactid=".0.0.0">
+                            </div>
+                            <div class="login-div col-xs-12 pantry-padding-0px" data-reactid=".0.2">
+                                <div class="login-div col-xs-7 pantry-padding-0px" data-reactid=".0.2.0">
+                                    <input id="code" class="form-input" name="code" type="tel" maxlength="4" placeholder="验证码" data-reactid=".0.2.0.0">
+                                </div>
+                                <div class="login-div col-xs-5 pantry-padding-0px" data-reactid=".0.2.1">
+                                    <a class="send_verify_code btn  btn-lg btn-block get-code-button visible-xs" data-reactid=".0.2.1.0">获取短信验证码</a>
+                                    <a class="send_verify_code btn btn-sm btn-block get-code-button-pc hidden-xs" data-reactid=".0.2.1.1">获取短信验证码</a>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 pantry-padding-0px" style="margin-top:5%;" data-reactid=".0.4">
+                                <div class="col-xs-6 pantry-padding-0px" style="text-align:left;" data-reactid=".0.4.0">
+                                    <input style="-ms-transform:scale(1.2);-moz-transform:scale(1.2);-webkit-transform:scale(1.2);-o-transform:scale(1.2);" type="checkbox"
+                                        id="remember_me" name="remember_me" checked="" data-reactid=".0.4.0.0">
+                                    <label style="margin-left:4px;cursor:pointer;" data-reactid=".0.4.0.1">
+                                        <p data-reactid=".0.4.0.1.0">保持登录状态</p>
+                                    </label>
+                                </div>
+                                <div class="col-xs-6 pantry-padding-0px" style="text-align:right;" data-reactid=".0.4.1">
+                                    <a class="" data-reactid=".0.4.1.0">获取语音验证码</a>
+                                </div>
+                            </div>
+                            <div class="login-div col-xs-12 pantry-padding-0px" data-reactid=".0.5">
+                                <div data-reactid=".0.5.0">
+                                    <a class="weixin_signup weixin_signup_jump btn btn-primary col-xs-6" style="width:45%;margin-right:auto;margin-bottom:0;display:block;"
+                                        href="/users/sign_up" data-reactid=".0.5.0.0">注册</a>
+                                    <a class="weixin_signup btn btn-primary col-xs-6" style="width:45%;margin-right:auto;float:right;margin-bottom:0;" data-reactid=".0.5.0.1">登录</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2 hidden-sm hidden-xs"></div>
+    </div>
+</div>
+{%endblock%}
